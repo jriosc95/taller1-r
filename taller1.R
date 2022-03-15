@@ -42,7 +42,28 @@ hist(machos,breaks = 5, main = "Distribución de tamaño en especies de langostino
   #obtenidas de los machos, están más dispersas respecto a su media.
   
   #C
-  intervalo <- t.test(hembras,
+  intervaloHembras <- t.test(hembras,
                       conf.level = 0.97)$conf.int;
-  intervalo
+  intervaloHembras
+  #El 97% de las hembras tienen una medida de entre los 184.7 mm a los 193.4 mm
+  
+  intervaloMachos <- t.test(machos,
+                            conf.level = 0.97)$conf.int;
+  intervaloMachos
+  #El 97% de los machos tienen una medida de entre los 144.2 mm a los 164.6 mm
+  
+  #D
+  bplotHembras = boxplot(hembras, main='tamaño de las hembras') 
+  bplotMachos = boxplot(machos, main='tamaño de los machos') 
+  #Las hmbras tienen una distribucion simetrica, en donde el 25% de las hembras
+  #tiene medidas por debajo de 183mm y el 75% medidas por debajo de 185mm
+  
+  ##Los machos tienen una asimetria positiva, en donde el 50% de los machos,
+  #tiene una medida entre los 140mm y los 175mm
+  
+  #E
+  shapiro.test(hembras);
+  #p>0.05, entonces tenemos una distribución normal en las hembras  
+  shapiro.test(machos)
+  #p>0.05, tenemos una distribución normal en los machos
   
