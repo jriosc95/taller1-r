@@ -67,3 +67,37 @@ hist(machos,breaks = 5, main = "Distribución de tamaño en especies de langostino
   shapiro.test(machos)
   #p>0.05, tenemos una distribución normal en los machos
   
+  
+  #2
+  p <- 0.015;
+  n <- 900
+  
+  #a
+  probMenos25Falsos <- pbinom(25, size = n, prob = p)
+  probMenos25Falsos #La probabilidad de que a lo sumo salgan 25 falsos es de 99%
+  
+  #b
+  probMayor20Falsos <- pbinom(20, size = n, prob = p, lower.tail = FALSE);
+  probMayor30Falsos <- pbinom(30, size = n, prob = p, lower.tail = FALSE);
+  
+  probEntre20y30 <- probMayor20Falsos - probMayor30Falsos;
+  
+  probEntre20y30;#La probabilidad de que salgan entre 20 y 30 falsos es de
+  #0.033 -> 3.3%
+  
+  #c
+  probMayor10Falsos <- pbinom(10, size = n, prob = p, lower.tail = FALSE);
+  probMayor10Falsos;#La probabilidad de que mas de 10 sean falsos es de
+  #0.79 -> 79%
+  
+  plot(dbinom(1:25, size = n, prob = p), type = "h", lwd = 2,
+       main = "Función de probabilidad binomial",
+       ylab = "P(X = x)", xlab = "Número de éxitos")
+  
+  lines(dbinom(20:30, size = n, prob = p), type = "h",
+        lwd = 2, col = rgb(1,0,0, 0.7))
+  
+  # n = 80, p = 0.3
+  lines(dbinom(10:n, size = n, prob = p), type = "h",
+        lwd = 2, col = rgb(1,0,0, 0.7))  
+  
